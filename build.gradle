@@ -1,0 +1,47 @@
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    
+    id 'findbugs'
+    id 'jacoco'
+}
+
+group   = 'io.szego'
+version = '1.0.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'nl.jqno.equalsverifier:equalsverifier:2.5'
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+task jacocoRootTestReport( type: JacocoReport ) {
+    sourceSets sourceSets.main
+}    
+
+findbugs {
+    sourceSets = [sourceSets.main]
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
