@@ -23,6 +23,12 @@ dependencies {
     testImplementation 'nl.jqno.equalsverifier:equalsverifier:2.5'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class' : 'io.szego.draw.Application'
+    }
+}
+
 jacocoTestCoverageVerification {
     violationRules {
         rule {
